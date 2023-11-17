@@ -39,7 +39,7 @@ const clear = () => {
 }
 
 useEffect(() => {
-    axios.get('https://tasks22.onrender.com/api/v1/orders')
+    axios.get('https://tasks22.onrender.com/api/v1/users')
       .then((response) => {
         setOptions(response.data);
         console.log(response.data);

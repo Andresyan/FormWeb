@@ -1,0 +1,97 @@
+.App {
+  display: flex;
+  justify-content: space-evenly;
+}
+ul{
+  list-style: none;
+  margin: 15px;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  height: 90px;
+  justify-content: space-between;
+  border-radius: 5px;
+}
+.list-container{
+  background-color: rgb(159, 71, 218);
+  width: 50%;
+  overflow-y: auto;
+  height: 100vh;
+}
+.card-user{
+  margin: 20px;
+  padding: 20px;
+}
+.form-container{
+  background-color: rgb(234, 247, 44);
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+input{
+  height: 30px;
+  width: 90%;
+  padding: 1px;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: rgb(235, 235, 235);
+}
+i{
+  margin-right: 5px;
+}
+.input-container{
+  width: 440px;
+  margin-top: 10px;
+}
+.name-container{
+  width: 210px;
+}
+.names-content{
+  width: 440px;
+  display: flex;
+  justify-content: space-between;
+}
+form{
+  width: 450px;
+
+}
+.button-content{
+  width: 420px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.button-content button{
+  font-size: 20px;
+  font-weight: 700;
+  width: 200px;
+  height: 32px;
+  background-color: rgb(47, 255, 193);
+  border-radius: 5px;
+}
+.card-button button{
+  background-color: transparent;
+  font-size: 20px;
+  margin-left: 10px;
+}
+button{
+  border: none;
+  cursor: pointer;
+}
+.fa-trash{
+  color: red;
+}
+li{
+  padding: 4px;
+}
+li:nth-child(odd){
+  font-size: 18px;
+  font-weight: 600;
+}
+li:nth-child(even){
+  font-size: 14px;
+}

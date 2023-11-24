@@ -22,7 +22,7 @@ const [owner, setOwner] = useState("");
 
 const reset = () => {
       setAddresseeId("");
-      setCarriedId("");
+      setCarrierId("");
       setApprovedById("");
       setUserId("");  
       setReceivedById("");
@@ -67,10 +67,10 @@ return (
                     onChange={(e) => setName(e.target.value)}
                     value={name}
                 />
-    </div>
+            </div>
               
               //Aplicar input autocompletado desplegable
-              <div>
+            <div>
               <select id="dropdown" value={selectedOption} onChange={handleSelectChange}>
               <option value="" disabled>Selecciona...</option>
               {options.map((user) => (
@@ -92,4 +92,4 @@ return (
     );
 };
 
-export default OrderForm;
+export default OrdersForm;

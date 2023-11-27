@@ -20,53 +20,88 @@ const [material, setMaterial] = useState("");
 const [quantity, setQuantity] = useState("");
 const [owner, setOwner] = useState("");
 
-const reset = () => {
-      setAddresseeId("");
-      setCarrierId("");
-      setApprovedById("");
-      setUserId("");  
-      setReceivedById("");
-      setCarRegistration("");
-      setZone("");
-      setMaterial("");
-      setQuantity("");
-      setOwner("");     
-};
-    //setDate("");
+
 const clear = () => {
         reset();
         deselectOrder();
 }
 
 useEffect(() => {
-    axios.get('https://tasks22.onrender.com/api/v1/users')
-      .then((response) => {
-        setOptions(response.data);
-        console.log(response.data);
-        
-      })
-      .catch((error) => {
-        
-        console.error('Error al obtener datos:', error);
-      });
-  }, []);
+    if(orderSelected !== null) {
+      setApprovedById(orderSelected.AprrovedById);
+      setCarrierId(orderSelected.carrierId);
+      setAddresseeId(orderSelected.addresseeId);
+      setUserId(orderSelected.userId);
+      setReceivedById(orderSelected.receivedById);
+      setMaterial(orderSelected.material);
+      setCarRegistration(orderSelected.carRegistration);
+      setOwner(orderSelected.owner);
+      setQuantity(orderSelected.quantity);
+      setZone(orderSelected.zone);
+    }  
+  }, [orderSelected]);
 
-    const handleSelectChange = (e) => {
+const submit = (e) => {
+    e.preventDefault();
+  const order = {
+      addresseeId,
+      carrierId,
+      approvedById,
+      receivedById,
+      userId,
+      carRegistration,
+      zone,
+      material,
+      quantity,
+      owner
+    };
+  if (orderSelected !== null) {
+    axios
+    .patch(`https://tasks22.onrender.com/api/v1/orders/${orderSelected.id}/`, order)
+    .then(() => {
+        getOrders();
+        reset();
+        deselectOrder();
+    });
+  } else {
+    axios
+    .post("https://tasks22.onrender.com/api/v1/orders/", order)
+    .then(() => {
+        getOrders();
+        reset();
+    })
+    .catch((error) => console.log(error.response));
+  }
+};
+  const reset = () => {
+    setAddresseeId("");
+    setCarrierId("");
+    setApprovedById("");
+    setUserId("");  
+    setReceivedById("");
+    setCarRegistration("");
+    setZone("");
+    setMaterial("");
+    setQuantity("");
+    setOwner("");     
+};
+const handleSelectChange = (e) => {
     setSelectedOption(e.target.value);
-  };
+};
 return (
         <form onSubmit={submit}>
-            <h1>New User</h1>
+          <h1>New Order</h1>
             <div className='names-content'>
             <i className="fa-solid fa-user"></i>
             <div className="name-container">
-                <label htmlFor="name"></label>
+                <label htmlFor="addresseeId"></label>
                 <input
                     type="text"
                     id="name" placeholder='FirstName'
                     onChange={(e) => setName(e.target.value)}
                     value={name}
                 />
+            </div>
             </div>
               
               //Aplicar input autocompletado desplegable
@@ -90,6 +125,6 @@ return (
             </div>
         </form>
     );
-};
+  };
 
 export default OrdersForm;
